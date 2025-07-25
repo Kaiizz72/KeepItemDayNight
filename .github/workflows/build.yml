@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: ⬇️ Checkout source code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: ☕ Set up Java 21 (Temurin)
       uses: actions/setup-java@v4
@@ -21,7 +21,7 @@ jobs:
         java-version: 21
 
     - name: 📦 Build with Maven
-      uses: apache/maven-action@v4
+      uses: apache/maven-action@v3
       with:
         maven-args: clean package
 
