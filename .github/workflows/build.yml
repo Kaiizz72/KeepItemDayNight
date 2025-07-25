@@ -1,0 +1,32 @@
+name: Build Plugin
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout source code
+      uses: actions/checkout@v4
+
+    - name: ☕ Set up Java 21 (Temurin)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 21
+
+    - name: 📦 Build with Maven
+      uses: apache/maven-action@v4
+      with:
+        maven-args: clean package
+
+    - name: 📤 Upload built plugin jar
+      uses: actions/upload-artifact@v4
+      with:
+        name: KeepItemsByTime
+        path: target/*.jar
